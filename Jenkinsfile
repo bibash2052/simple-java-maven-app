@@ -16,7 +16,7 @@ pipeline {
                     def buildUrl = env.BUILD_URL
                     def buildTrigger = currentBuild.getBuildCauses()
                     buildTrigger.each { cause ->
-                        echo "{cause.getShortDescription}"
+                        echo ${cause.getShortDescription}
                     }
 
                     // Define the mail subject and body
@@ -37,7 +37,7 @@ pipeline {
                     emailext(
                         subject: mailSubject,
                         body: mailBody,
-                        recipientProviders: [[$class:'DevelopersRecipientProvider']] //this will send the email to committers of the build
+                        recipientProviders: [developers]
                     )
                 }
             }
