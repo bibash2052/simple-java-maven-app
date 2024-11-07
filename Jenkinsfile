@@ -35,7 +35,7 @@ pipeline {
 
                     // Send the email notification
                     emailext(
-                        to: "bibash2052+@gmail.com"
+                        to: "bibash2052+@gmail.com",
                         subject: mailSubject,
                         body: mailBody,
                     )
