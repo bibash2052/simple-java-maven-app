@@ -35,11 +35,9 @@ pipeline {
 
                     // Send the email notification
                     emailext(
-                        to: mailRecipients,
-                        from: mailSender,
                         subject: mailSubject,
                         body: mailBody,
-                        mimeType: 'text/html'
+                        recipientProviders;  [[$class:`DevelopersRecipientProvider`]] //this will send the email to committers of the build
                     )
                 }
             }
