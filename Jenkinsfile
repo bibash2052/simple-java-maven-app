@@ -14,7 +14,7 @@ pipeline {
                     def buildNumber = env.BUILD_NUMBER
                     def jobName = env.JOB_NAME
                     def buildUrl = env.BUILD_URL
-                    def buildTrigger = currentBuild.rawBuild.getCauses(hudson.model.Cause)
+                    def buildTrigger = currentBuild.rawBuild.getCauses()
                     def shortDescription = ""
                     if(buildTrigger) {
                         shortDescription = buildTrigger.getShortDescription()
