@@ -14,16 +14,17 @@ pipeline {
                     def buildNumber = env.BUILD_NUMBER
                     def jobName = env.JOB_NAME
                     def buildUrl = env.BUILD_URL
-                    def buildTrigger = currentBuild.getBuildCauses()
-                    buildTrigger.each { cause ->
-                        echo ${cause.getShortDescription}
+                    def buildTrigger = currentBuild.rawBuild.getCauses(hudson.model.Cause)
+                    def shortDescription = ""
+                    if(buildTrigger) {
+                        shortDescription = buildTrigger.getShortDescription()
                     }
 
                     // Define the mail subject and body
                     def mailSubject = "Build Failure: ${jobName} #${buildNumber}"
                     def mailBody = """
                         <p>Build ${buildNumber} of ${jobName} has failed.</p>
-                        <p>Build Trigger: ${buildTrigger}</p>
+                        <p>Build Trigger: ${shortDescription}</p>
                         <p>Build Details:</p>
                         <ul>
                             <li>Build Number: ${buildNumber}</li>
