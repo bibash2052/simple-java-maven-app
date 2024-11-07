@@ -14,17 +14,12 @@ pipeline {
                     def buildNumber = env.BUILD_NUMBER
                     def jobName = env.JOB_NAME
                     def buildUrl = env.BUILD_URL
-                    def buildTrigger = currentBuild.rawBuild.getCauses()
-                    def shortDescription = ""
-                    if(buildTrigger) {
-                        shortDescription = buildTrigger.getShortDescription()
-                    }
+
 
                     // Define the mail subject and body
                     def mailSubject = "Build Failure: ${jobName} #${buildNumber}"
                     def mailBody = """
                         <p>Build ${buildNumber} of ${jobName} has failed.</p>
-                        <p>Build Trigger: ${shortDescription}</p>
                         <p>Build Details:</p>
                         <ul>
                             <li>Build Number: ${buildNumber}</li>
