@@ -37,7 +37,7 @@ pipeline {
                     emailext(
                         subject: mailSubject,
                         body: mailBody,
-                        recipientProviders: [[$class:`DevelopersRecipientProvider`]] //this will send the email to committers of the build
+                        recipientProviders: [[$class:'DevelopersRecipientProvider']] //this will send the email to committers of the build
                     )
                 }
             }
