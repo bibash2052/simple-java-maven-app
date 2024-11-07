@@ -37,7 +37,7 @@ pipeline {
                     emailext(
                         subject: mailSubject,
                         body: mailBody,
-                        recipientProviders: [developers]
+                        recipientProviders: [developers()]
                     )
                 }
             }
